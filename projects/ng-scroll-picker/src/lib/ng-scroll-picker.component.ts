@@ -124,8 +124,8 @@ export { PickerDataModel, PickerResponseModel };
       }
 
       .tengah {
-        background-color: rgba(254, 237, 238, 1);
-        border-radius: 16px;
+        background-color: rgba(220, 220, 220, 1);
+        border-radius: 5px;
       }
 
       .ng-data-picker .picker-handle-layer .picker-bottom {
@@ -547,7 +547,7 @@ export class NgScrollPickerComponent
           1 -
           Math.abs(gapCount) / (90 / this.itemPerDegree)
         ).toString(),
-        color: gapCount === 0 ? 'rgba(237, 27, 45, 1)' : '',
+        // color: gapCount === 0 ? 'rgba(237, 27, 45, 1)' : '',
       };
       if (!this.draggingInfo.isDragging) {
         rotateStyle['transition'] = 'transform 150ms ease-out';
