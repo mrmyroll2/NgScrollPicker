@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:lib-watch": "ng build ng-scroll-picker --watch",
-    "build:lib": "ng build ng-scroll-picker"
+    "build:lib": "ng build ng-scroll-picker --configuration production"
   },
   "private": true,
   "dependencies": {
