@@ -7,5 +7,26 @@
   },
   "dependencies": {
     "tslib": "^2.3.0"
-  }
+  },
+  "description": "Base logic inspired from https://github.com/hiyali/ng-data-picker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrmyroll2/NgScrollPicker.git"
+  },
+  "keywords": [
+    "angular",
+    "scroll",
+    "picker",
+    "ios"
+  ],
+  "author": "Amierul Basyar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrmyroll2/NgScrollPicker/issues"
+  },
+  "homepage": "https://github.com/mrmyroll2/NgScrollPicker#readme"
 }
