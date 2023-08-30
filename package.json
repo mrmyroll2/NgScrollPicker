@@ -6,7 +6,9 @@
     "start": "ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:lib-watch": "ng build ng-scroll-picker --watch",
+    "build:lib": "ng build ng-scroll-picker"
   },
   "private": true,
   "dependencies": {
