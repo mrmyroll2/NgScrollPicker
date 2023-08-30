@@ -311,6 +311,7 @@ export class NgScrollPickerComponent
       { name: _ ? 'touchmove' : 'mousemove', handler: this.handleMove },
       { name: _ ? 'touchend' : 'mouseup', handler: this.handleEnd },
       { name: _ ? 'touchcancel' : 'mouseleave', handler: this.handleCancel },
+      { name: 'wheel', handler: this.handleScroll },
     ];
     eventHandlerList.forEach((item, index) => {
       el.removeEventListener(item.name, item.handler, false);
@@ -430,6 +431,30 @@ export class NgScrollPickerComponent
       this.correctionAfterDragging(ev);
       this.touchOrMouse.isMouseDown = false;
       this.draggingInfo.isDragging = false;
+    }
+  }
+
+  handleScroll(ev: any) {
+    ev.preventDefault();
+    ev.stopPropagation();
+    if (ev instanceof WheelEvent) {
+      ev = ev as WheelEvent;
+      const gIndex = this.getGroupIndexBelongsEvent(ev);
+
+      const deltaY = ev.deltaY;
+
+      if (deltaY > 0) {
+        // Scrolling down
+        console.log('Scrolling down');
+        this.triggerAboveLayerClick(ev, gIndex);
+      } else if (deltaY < 0) {
+        // Scrolling up
+        console.log('Scrolling up');
+        this.triggerBelowLayerClick(ev, gIndex);
+      } else {
+        // No vertical scrolling
+        console.log('No vertical scrolling');
+      }
     }
   }
 
