@@ -11,6 +11,8 @@ You can find a live demo of the NgScrollPicker [here](https://mrmyroll2.github.i
 
 ## Installation
 
+[ng-scroll-picker](https://www.npmjs.com/package/ng-scroll-picker)
+
 ```
 npm install ng-scroll-picker
 ```
