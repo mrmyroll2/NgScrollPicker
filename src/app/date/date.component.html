@@ -1,0 +1,13 @@
+<h1>Date Picker</h1>
+<div>
+  <ng-scroll-picker
+    #datePicker
+    [data]="data"
+    (change)="changeYear($event)"
+  ></ng-scroll-picker>
+</div>
+
+<p>Selected Date : {{ selectedDay }}-{{ selectedMonth }}-{{ selectedYear }}</p>
+
+<p>Min Date : {{ minDate | date : "dd MM YYYY" }}</p>
+<p>Max Date : {{ maxDate | date : "dd MM YYYY" }}</p>
