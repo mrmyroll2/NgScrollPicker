@@ -369,7 +369,7 @@ export class NgScrollPickerComponent
     const touchInfo = this.getTouchInfo(ev);
     for (let i = 0; i < this.groupsRectList.length; i++) {
       const item = this.groupsRectList[i];
-      if (item.left < touchInfo.pageX && touchInfo.pageX < item.right) {
+      if (item.left < touchInfo.offsetX && touchInfo.offsetX < item.right) {
         return i;
       }
     }
