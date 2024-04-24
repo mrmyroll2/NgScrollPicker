@@ -29,13 +29,13 @@ export { PickerDataModel, PickerResponseModel };
         #pickerGroupLayer
         *ngFor="let group of data; let gIndex = index"
         class="picker-group"
-        [ngClass]="getGroupClass(gIndex)"
+        [ngClass]="data[gIndex] | groupClass"
       >
         <div class="picker-list">
           <div
             *ngIf="group.divider; else ngIfElse"
             class="picker-item divider"
-            [ngClass]="getItemClass(gIndex, gIndex, true)"
+            [ngClass]="data[gIndex] | itemClass: {isCurrentItem: gIndex === currentIndexList[gIndex], divider: true}"
           >
             {{ group.text }}
           </div>
@@ -45,8 +45,8 @@ export { PickerDataModel, PickerResponseModel };
               #ngIfElse
               *ngFor="let item of group.list; let iIndex = index"
               class="picker-item"
-              [ngClass]="getItemClass(gIndex, iIndex)"
-              [ngStyle]="getItemStyle(gIndex, iIndex)"
+              [ngClass]="data[gIndex] | itemClass: {isCurrentItem: iIndex === currentIndexList[gIndex], divider: data[gIndex].divider}"
+              [ngStyle]="currentIndexList[gIndex] | itemStyle: { index: iIndex, draggable: draggingInfo.isDragging }"
             >
               {{ item.label }}
             </div>
@@ -531,58 +531,5 @@ export class NgScrollPickerComponent
 
   getCurrentIndexList() {
     return this.currentIndexList;
-  }
-
-  getGroupClass(gIndex: any) {
-    const group = this.data[gIndex];
-    const defaultWeightClass = 'weight-' + (group.weight || 1);
-    const groupClass = [defaultWeightClass];
-    if (group.className) {
-      groupClass.push(group.className);
-    }
-    return groupClass;
-  }
-
-  getItemClass(gIndex: any, iIndex: any, isDivider = false) {
-    const group = this.data[gIndex];
-    const itemClass = [];
-    if (!isDivider && this.isCurrentItem(gIndex, iIndex)) {
-      itemClass.push('smooth-item-selected');
-    }
-    if (group.textAlign) {
-      itemClass.push('text-' + group.textAlign);
-    }
-    return itemClass;
-  }
-
-  getItemStyle(gIndex: any, iIndex: any) {
-    const gapCount = this.currentIndexList[gIndex] - iIndex;
-    if (Math.abs(gapCount) < 90 / this.itemPerDegree) {
-      const rotateStyle: {
-        transform: string;
-        opacity: string;
-        transition?: string;
-        color?: string;
-      } = {
-        transform:
-          'rotateX(' +
-          gapCount * this.itemPerDegree +
-          'deg) translate3d(0, 0, 5.625em)',
-        opacity: (
-          1 -
-          Math.abs(gapCount) / (90 / this.itemPerDegree)
-        ).toString(),
-        // color: gapCount === 0 ? 'rgba(237, 27, 45, 1)' : '',
-      };
-      if (!this.draggingInfo.isDragging) {
-        rotateStyle['transition'] = 'transform 150ms ease-out';
-      }
-      return rotateStyle;
-    }
-    if (gapCount > 0) {
-      return { transform: 'rotateX(90deg) translate3d(0, 0, 5.625em)' };
-    } else {
-      return { transform: 'rotateX(-90deg) translate3d(0, 0, 5.625em)' };
-    }
   }
 }
