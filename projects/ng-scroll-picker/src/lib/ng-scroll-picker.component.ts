@@ -292,7 +292,7 @@ export class NgScrollPickerComponent
   getGroupsRectList() {
     if (this.pickerGroupLayer) {
       this.pickerGroupLayer.toArray().forEach((item: any, index: number) => {
-        this.groupsRectList[index] = item.nativeElement.getBoundingClientRect();
+        this.groupsRectList[index] = {left: item.nativeElement.offsetLeft, right: item.nativeElement.offsetLeft + item.nativeElement.offsetWidth};
       });
     }
   }
@@ -369,7 +369,8 @@ export class NgScrollPickerComponent
     const touchInfo = this.getTouchInfo(ev);
     for (let i = 0; i < this.groupsRectList.length; i++) {
       const item = this.groupsRectList[i];
-      if (item.left < touchInfo.offsetX && touchInfo.offsetX < item.right) {
+      if ((item.left < touchInfo?.offsetX && touchInfo?.offsetX < item.right) ||
+        (item.left < touchInfo?.pageX && touchInfo?.pageX < item.right)) {
         return i;
       }
     }
