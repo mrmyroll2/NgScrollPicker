@@ -19,7 +19,7 @@ export class ItemStylePipe implements PipeTransform {
     let rotateStyle: RotateStyle = {};
     const gapCount = current - options.index;
     if (Math.abs(gapCount) < 90 / this.itemPerDegree) {
-      rotateStyle['transform'] = `rotateX(' ${gapCount * this.itemPerDegree}'deg) translate3d(0, 0, 5.625em)`;
+      rotateStyle['transform'] = 'rotateX(' + gapCount * this.itemPerDegree + 'deg) translate3d(0, 0, 5.625em)';
       rotateStyle['opacity'] = `${1 - Math.abs(gapCount) / (90 / this.itemPerDegree)}`;
       if (!options.draggable) {
         rotateStyle['transition'] = `transform 150ms ease-out`;
