@@ -1,6 +1,6 @@
 {
   "name": "ng-scroll-picker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0"
